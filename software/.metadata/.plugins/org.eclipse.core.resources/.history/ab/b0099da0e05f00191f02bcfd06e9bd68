@@ -1,0 +1,59 @@
+/*
+ * app.c
+ *
+ *  Created on: Mar 31, 2019
+ *      Author: kareem
+ */
+
+
+#include<avr/io.h>
+#include"util/delay.h"
+#include"hdrivers.h"
+#include<avr/interrupt.h>
+#include "datatypes.h"
+#include "avrRegisters.h"
+unsigned char g_motorSpeedlvl=0;
+unsigned char g_interrupt_flag=0;
+int main(void)
+{
+	// initial value of motor speed
+	Init_pwm_timer0();
+	Init_external_interrupt0();
+	// We cleared pins , PA1 AND PA2 TO BE INPUT BINS PA1 AND PA2 TO CONTROL THE DC MOTOR DIRECTION
+	DDRA_REG.BITS.BIT1 =0 ;
+	DDRA_REG.BITS.BIT2 =0 ;
+	// WE SET PC0 , PC1 , PC2 AND PC3 TO BE OUTPUT PINS TO DISPLAY THE DC MOTOR SPEED LVL ON 7 SEGMENT
+	DDRC_REG.data |=0X0f;
+	PORTC_REG.data &=0Xf0;
+	// SET PD0 AND PD1 TO BE OUTPUT PINS TO CONTROL THE DIRECTION OF DC MOTOR
+	DDRD_REG.BITS.BIT0=1;
+	DDRD_REG.BITS.BIT1=1;
+
+	while(1)
+	{
+		if(PINA&(1<<PA0))
+		{
+			PORTD_REG.BITS.BIT0 =1;
+			PORTD_REG.BITS.BIT1 =0;
+		}
+		else if(PINA &(1<<PA1))
+		{
+			PORTD_REG.BITS.BIT1 =1;
+			PORTD_REG.BITS.BIT0 =0;
+		}
+		// this code will be implemented when the interrupt request happen.
+		if(g_interrupt_flag==1)
+		{
+			if(g_motorSpeedlvl==9)
+			{
+				g_motorSpeedlvl=0;
+				PORTC_REG.data &=0XF0;
+			}
+			g_motorSpeedlvl++;
+			OCR0=(255*g_motorSpeedlvl)/9;
+			PORTC_REG = (PORTC & 0XF0)|(g_motorSpeedlvl & 0X0F);
+			g_interrupt_flag=0;
+		}
+	}
+}
+

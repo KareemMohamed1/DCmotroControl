@@ -1,0 +1,18 @@
+/*
+ ============================================================================
+ Name        : datatypes.h
+ Author      : kareem mohamed
+ Description : define the used data types  in embedded programming
+ Date        : 31/3/2019
+ ============================================================================
+ */
+#ifndef DATATYPES_H_
+#define DATATYPES_H_
+
+typedef unsigned char uint8 ;
+typedef signed char sint8;
+typedef unsigned short uint16;
+typedef signed short sint16;
+
+
+#endif /* DATATYPES_H_ */

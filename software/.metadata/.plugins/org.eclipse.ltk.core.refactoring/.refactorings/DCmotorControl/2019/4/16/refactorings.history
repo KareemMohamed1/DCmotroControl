@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;DCmotorControl/avrRegisters.h&apos; to &apos;dioavrRegisters.h&apos;" description="Rename resource &apos;avrRegisters.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="avrRegisters.h" name="dioavrRegisters.h" stamp="1555380017477" updateReferences="true"/>
+</session>

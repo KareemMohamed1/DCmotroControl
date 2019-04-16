@@ -1,0 +1,23 @@
+/*
+ * avrRegisters.h
+ *
+ *  Created on: Apr 16, 2019
+ *      Author: karee
+ */
+
+#ifndef AVRREGISTERS_H_
+#define AVRREGISTERS_H_
+typedef union {
+	uint8 data;
+	struct {
+		uint8 BIT0 :1;
+		uint8 BIT1 :1;
+		uint8 BIT2 :1;
+		uint8 BIT3 :1;
+		uint8 BIT4 :1;
+		uint8 BIT5 :1;
+		uint8 BIT6 :1;
+		uint8 BIT7 :1;
+	}BITS;
+}REG_8BIT;
+#endif /* AVRREGISTERS_H_ */
