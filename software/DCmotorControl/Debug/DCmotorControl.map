@@ -124,7 +124,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x288
+.text           0x00000000      0x27c
  *(.vectors)
  .vectors       0x00000000       0x54 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -206,29 +206,29 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text          0x0000007c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
                 0x0000007c                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x0000007c      0x122 ./app.o
+ .text.main     0x0000007c      0x116 ./app.o
                 0x0000007c                main
  .text.Init_pwm_timer0
-                0x0000019e       0x2c ./cdriver.o
-                0x0000019e                Init_pwm_timer0
+                0x00000192       0x2c ./cdriver.o
+                0x00000192                Init_pwm_timer0
  .text.Init_external_interrupt0
-                0x000001ca       0x42 ./cdriver.o
-                0x000001ca                Init_external_interrupt0
+                0x000001be       0x42 ./cdriver.o
+                0x000001be                Init_external_interrupt0
  .text.__vector_1
-                0x0000020c       0x2a ./cdriver.o
-                0x0000020c                __vector_1
- .text.libgcc   0x00000236       0x26 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
-                0x00000236                __divmodhi4
-                0x00000236                _div
- .text.libgcc   0x0000025c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x0000025c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x0000025c       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x0000025c                __udivmodhi4
-                0x00000284                . = ALIGN (0x2)
+                0x00000200       0x2a ./cdriver.o
+                0x00000200                __vector_1
+ .text.libgcc   0x0000022a       0x26 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+                0x0000022a                __divmodhi4
+                0x0000022a                _div
+ .text.libgcc   0x00000250        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000250        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000250       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x00000250                __udivmodhi4
+                0x00000278                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000284        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000284                exit
-                0x00000284                _exit
+ .fini9         0x00000278        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000278                exit
+                0x00000278                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -247,11 +247,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000284        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000278        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000288                _etext = .
+                0x0000027c                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000288
+.data           0x00800060        0x0 load address 0x0000027c
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -282,13 +282,12 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.bss*)
  .bss.g_motorSpeedlvl
                 0x00800060        0x1 ./app.o
-                0x00800060                g_motorSpeedlvl
  *(COMMON)
  COMMON         0x00800061        0x1 ./cdriver.o
                 0x00800061                g_interrupt_flag
                 0x00800062                PROVIDE (__bss_end, .)
-                0x00000288                __data_load_start = LOADADDR (.data)
-                0x00000288                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000027c                __data_load_start = LOADADDR (.data)
+                0x0000027c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800062        0x0
                 0x00800062                PROVIDE (__noinit_start, .)

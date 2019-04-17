@@ -53,7 +53,7 @@ int main(void)
 			}
 			g_motorSpeedlvl++;
 			OCR0=(255*g_motorSpeedlvl)/9;
-			PORTC_REG.data = (PORTC_REG.data& 0XF0)|(g_motorSpeedlvl & 0X0F);
+			PORTC = (PORTC & 0XF0)|(g_motorSpeedlvl & 0X0F);
 			g_interrupt_flag=LOW;
 		}
 	}
