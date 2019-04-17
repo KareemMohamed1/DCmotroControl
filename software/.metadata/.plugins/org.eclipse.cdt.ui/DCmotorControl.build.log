@@ -1,4 +1,4 @@
-19:30:56 **** Incremental Build of configuration Debug for project DCmotorControl ****
+19:42:43 **** Incremental Build of configuration Debug for project DCmotorControl ****
 make all 
 Building file: ../app.c
 Invoking: AVR Compiler
@@ -32,5 +32,5 @@ Data:          2 bytes (0.2% Full)
 Finished building: sizedummy
  
 
-19:30:56 Build Finished (took 392ms)
+19:42:44 Build Finished (took 545ms)
 
