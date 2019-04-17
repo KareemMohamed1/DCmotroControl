@@ -33,12 +33,12 @@ int main(void)
 
 	while(1)
 	{
-		if(PINA_REG.BITS.BIT0==HIGH)
+		if(PINA_REG.BITS.BIT0==1)
 		{
 			PORTD_REG.BITS.BIT0 =HIGH;
 			PORTD_REG.BITS.BIT1 =LOW;
 		}
-		else if(PINA_REG.BITS.BIT1==HIGH)
+		else if(PINA_REG.BITS.BIT1==1)
 		{
 			PORTD_REG.BITS.BIT1 =HIGH;
 			PORTD_REG.BITS.BIT0 =LOW;
