@@ -11,6 +11,6 @@
 #define HDRIVERS_H_
 void Init_pwm_timer0(void);
 void Init_external_interrupt0(void);
-
+extern bool g_interrupt_flag;
 
 #endif /* HDRIVERS_H_ */

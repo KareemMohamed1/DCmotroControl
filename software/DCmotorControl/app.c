@@ -14,7 +14,7 @@
 #include "datatypes.h"
 #include "dioavrRegisters.h"
 static uint8 g_motorSpeedlvl=0;
-extern bool g_interrupt_flag;
+
 
 int main(void)
 {
