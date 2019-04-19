@@ -65,9 +65,9 @@ Disassembly of section .text:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 0000007c <main>:
-#include "dioavrRegisters.h"
 static uint8 g_motorSpeedlvl=0;
 extern bool g_interrupt_flag;
+#define MOTOR_REG PORTA_REG
 
 int main(void)
 {

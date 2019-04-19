@@ -15,7 +15,6 @@
 #include "dioavrRegisters.h"
 static uint8 g_motorSpeedlvl=0;
 extern bool g_interrupt_flag;
-#define MOTOR_REG PORTA_REG
 
 int main(void)
 {
