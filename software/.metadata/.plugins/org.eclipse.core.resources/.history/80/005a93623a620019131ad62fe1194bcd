@@ -1,0 +1,20 @@
+/*
+ ============================================================================
+ Name        : hdrivers.h
+ Author      : kareem mohamed
+ Description : define the used data types  in embedded programming
+ Date        : 14/4/2019
+ ============================================================================
+ */
+
+#ifndef HDRIVERS_H_
+#define HDRIVERS_H_
+
+#define DDRA_REG.BITS MOTOR_DIRECTION_INPUT_REG
+#include "datatypes.h"
+#include "dioavrRegisters.h"
+void Init_pwm_timer0(void);
+void Init_external_interrupt0(void);
+
+
+#endif /* HDRIVERS_H_ */

@@ -7,9 +7,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   1 .bss          00000002  00800060  00800060  000002f0  2**0
                   ALLOC
-  2 .stab         000006cc  00000000  00000000  000002f0  2**2
+  2 .stab         000006f0  00000000  00000000  000002f0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      000008c3  00000000  00000000  000009bc  2**0
+  3 .stabstr      000008d1  00000000  00000000  000009e0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -238,7 +238,7 @@ int main(void)
  190:	9f cf       	rjmp	.-194    	; 0xd0 <main+0x54>
 
 00000192 <Init_pwm_timer0>:
-#include "dioavrRegisters.h"
+#include<avr/interrupt.h>
  bool g_interrupt_flag;
 
 // first function to initialize the fast PWM mode in atmega16 to control the speed of DC motor
@@ -248,34 +248,34 @@ void Init_pwm_timer0(void)
  194:	cf 93       	push	r28
  196:	cd b7       	in	r28, 0x3d	; 61
  198:	de b7       	in	r29, 0x3e	; 62
-	TCCR0 =(1<<WGM00)|(1<<WGM01)|(1<<COM01)|(1<<CS01);
- 19a:	e3 e5       	ldi	r30, 0x53	; 83
- 19c:	f0 e0       	ldi	r31, 0x00	; 0
- 19e:	8a e6       	ldi	r24, 0x6A	; 106
- 1a0:	80 83       	st	Z, r24
 	 * WGM00 AND WGM01 ARE SET TO CHOOSE FAST PWM MODE
 	 * COM01 IS SET AND COM00 IS CLEARED TO CHOOSE NON-INVERTING MODE
 	 * CS01 IS SET AND CS00 AND CS02 ARE CLEARED TO CHOOSE PRESCALER =8
 	 * THE PWM FREQUENCY IS 488 HZ = (1MHZ/(256*8))
 	 */
+	TCCR0 =(1<<WGM00)|(1<<WGM01)|(1<<COM01)|(1<<CS01);
+ 19a:	e3 e5       	ldi	r30, 0x53	; 83
+ 19c:	f0 e0       	ldi	r31, 0x00	; 0
+ 19e:	8a e6       	ldi	r24, 0x6A	; 106
+ 1a0:	80 83       	st	Z, r24
+	// Initial value for TCNT0 register =0 to start count from 0;
 	TCNT0 =0;
  1a2:	e2 e5       	ldi	r30, 0x52	; 82
  1a4:	f0 e0       	ldi	r31, 0x00	; 0
  1a6:	10 82       	st	Z, r1
-	// Initial value for TCNT0 register =0 to start count from 0;
+	// Initial value for OCR0 register =0,THIS REGISTER WILL BE SET BY THE USER TO CONTROL SPEED OF DC MOTOR
 	OCR0=0;
  1a8:	ec e5       	ldi	r30, 0x5C	; 92
  1aa:	f0 e0       	ldi	r31, 0x00	; 0
  1ac:	10 82       	st	Z, r1
-	// Initial value for OCR0 register =0,THIS REGISTER WILL BE SET BY THE USER TO CONTROL SPEED OF DC MOTOR
+    // PIN (PB3) OR (OC0) IS SET TO BE OUTPUT PIN TO CONTROL THE SPEED OF DC MOTOR
 	DDRB_REG.BITS.BIT3 = HIGH;
  1ae:	e7 e3       	ldi	r30, 0x37	; 55
  1b0:	f0 e0       	ldi	r31, 0x00	; 0
  1b2:	80 81       	ld	r24, Z
  1b4:	88 60       	ori	r24, 0x08	; 8
  1b6:	80 83       	st	Z, r24
-	// PIN (PB3) OR (OC0) IS SET TO BE OUTPUT PIN TO CONTROL THE SPEED OF DC MOTOR
-
+	
 }
  1b8:	cf 91       	pop	r28
  1ba:	df 91       	pop	r29
@@ -292,6 +292,7 @@ void Init_external_interrupt0(void)
  1c0:	cf 93       	push	r28
  1c2:	cd b7       	in	r28, 0x3d	; 61
  1c4:	de b7       	in	r29, 0x3e	; 62
+	// TO ENABLE GLOBAL INTERRUPT FLAG (I-BIT)
 	SREG |=(1<<7);
  1c6:	af e5       	ldi	r26, 0x5F	; 95
  1c8:	b0 e0       	ldi	r27, 0x00	; 0
@@ -300,7 +301,7 @@ void Init_external_interrupt0(void)
  1ce:	80 81       	ld	r24, Z
  1d0:	80 68       	ori	r24, 0x80	; 128
  1d2:	8c 93       	st	X, r24
-	// TO ENABLE GLOBAL INTERRUPT FLAG (I-BIT)
+	// THE ISC00 AND ISC01  BITS AER SET TO 1 TO GENERATE THE INTERRUPT AT RISING EDGE.
 	MCUCR |=(1<<ISC00)|(1<<ISC01);
  1d4:	a5 e5       	ldi	r26, 0x55	; 85
  1d6:	b0 e0       	ldi	r27, 0x00	; 0
@@ -309,7 +310,7 @@ void Init_external_interrupt0(void)
  1dc:	80 81       	ld	r24, Z
  1de:	83 60       	ori	r24, 0x03	; 3
  1e0:	8c 93       	st	X, r24
-	// THE ISC00 AND ISC01  BITS AER SET TO 1 TO GENERATE THE INTERRUPT AT RISING EDGE.
+	// IS SET TO ENABLE INTERRUPT FLAG OF EXTERNAL INTERRUPT0.
 	GICR |=(1<<INT0);
  1e2:	ab e5       	ldi	r26, 0x5B	; 91
  1e4:	b0 e0       	ldi	r27, 0x00	; 0
@@ -318,14 +319,14 @@ void Init_external_interrupt0(void)
  1ea:	80 81       	ld	r24, Z
  1ec:	80 64       	ori	r24, 0x40	; 64
  1ee:	8c 93       	st	X, r24
-	// IS SET TO ENABLE INTERRUPT FLAG OF EXTERNAL INTERRUPT0.
+	// CLearing pin PB0 To make it input form external interrupt 0 to control the speed of DC MOTOR
 	DDRD_REG.BITS.BIT2=LOW;
  1f0:	e1 e3       	ldi	r30, 0x31	; 49
  1f2:	f0 e0       	ldi	r31, 0x00	; 0
  1f4:	80 81       	ld	r24, Z
  1f6:	8b 7f       	andi	r24, 0xFB	; 251
  1f8:	80 83       	st	Z, r24
-	// CLearing pin PB0 To make it input form external interrupt 0 to control the speed of DC MOTOR
+	
 
 }
  1fa:	cf 91       	pop	r28

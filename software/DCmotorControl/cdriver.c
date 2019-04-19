@@ -11,8 +11,6 @@
 #include"util/delay.h"
 #include"hdrivers.h"
 #include<avr/interrupt.h>
-#include "datatypes.h"
-#include "dioavrRegisters.h"
  bool g_interrupt_flag;
 
 // first function to initialize the fast PWM mode in atmega16 to control the speed of DC motor

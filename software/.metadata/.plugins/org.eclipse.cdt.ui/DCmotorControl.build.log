@@ -1,4 +1,4 @@
-19:42:43 **** Incremental Build of configuration Debug for project DCmotorControl ****
+02:33:39 **** Incremental Build of configuration Debug for project DCmotorControl ****
 make all 
 Building file: ../app.c
 Invoking: AVR Compiler
@@ -6,6 +6,13 @@ avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -f
 In file included from ../app.c:11:
 c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
 Finished building: ../app.c
+ 
+Building file: ../cdriver.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"cdriver.d" -MT"cdriver.o" -c -o "cdriver.o" "../cdriver.c"
+In file included from ../cdriver.c:11:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../cdriver.c
  
 Building target: DCmotorControl.elf
 Invoking: AVR C Linker
@@ -32,5 +39,5 @@ Data:          2 bytes (0.2% Full)
 Finished building: sizedummy
  
 
-19:42:44 Build Finished (took 545ms)
+02:33:39 Build Finished (took 453ms)
 

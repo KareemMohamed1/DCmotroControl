@@ -312,15 +312,15 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000      0x6cc
+.stab           0x00000000      0x6f0
  *(.stab)
- .stab          0x00000000      0x4bc ./app.o
- .stab          0x000004bc      0x210 ./cdriver.o
-                                0x474 (size before relaxing)
+ .stab          0x00000000      0x4d4 ./app.o
+ .stab          0x000004d4      0x21c ./cdriver.o
+                                0x48c (size before relaxing)
 
-.stabstr        0x00000000      0x8c3
+.stabstr        0x00000000      0x8d1
  *(.stabstr)
- .stabstr       0x00000000      0x8c3 ./app.o
+ .stabstr       0x00000000      0x8d1 ./app.o
 
 .stab.excl
  *(.stab.excl)
